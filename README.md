@@ -36,8 +36,9 @@ Of course, you should explore around the project structure, but the best place t
 We are using **cargo-leptos** for building and serving our project.
 
 ```sh
-npx tailwindcss -i ./style/main.css -o ./style/output.css --watch
+tailwindcss -i ./style/main.css -o ./style/output.css --watch
 ```
+Download `TailwindCss CLI` standalone [TailwindCss CLI - Github Releases](https://github.com/tailwindlabs/tailwindcss/releases)
 
 This command watches and generates `output.css` from `main.css`.
 
