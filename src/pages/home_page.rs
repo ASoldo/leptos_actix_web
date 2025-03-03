@@ -1,4 +1,5 @@
 use crate::components::demo::Demo;
+use crate::store::counter::use_counter_store;
 use leptos::html::Canvas;
 use leptos::prelude::*;
 use wasm_bindgen::JsCast;
@@ -6,8 +7,6 @@ use web_sys::{CanvasRenderingContext2d, HtmlCanvasElement};
 
 #[component]
 pub fn HomePage() -> impl IntoView {
-    let count = RwSignal::new(0);
-    let on_click = move |_| *count.write() += 1;
     let on_press = move |_| {
         if let Some(window) = web_sys::window() {
             let _ = window.alert_with_message("Hello from Rust!");
@@ -26,14 +25,17 @@ pub fn HomePage() -> impl IntoView {
             }
         }
     });
+
+    let store = use_counter_store();
+    let store_for_demo = store.clone();
     let handle_demo_click = Callback::new(move |_| {
-        *count.write() += 2;
-        log::info!("Demo clicked! Count is now: {}", count.get());
+        store_for_demo.increment();
     });
 
     view! {
     <h1 class="bg-amber-500 p-2 m-3 border-2 border-red-500">"Welcome to Leptos!"</h1>
-    <button class="p-4 m-2 bg-blue-500 text-white rounded-3xl" on:click=on_click>"Click Me: " {count}</button>
+    <h1 class="p-4 m-2 bg-blue-500 text-white rounded-3xl">"Count:
+        "{move || store.count.get()}</h1>
     <canvas node_ref=canvas_ref class="border-black border-2" />
     <button on:click=on_press class="p-4 m-2 bg-green-500 rounded-3xl outline-red-500">"Alert"</button>
     <Demo text="Emit by clicking here and increment counter by 2" .to_string() on_demo_click=handle_demo_click />
