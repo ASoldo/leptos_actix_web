@@ -75,8 +75,8 @@ site/
 Set the following environment variables (updating for your project as needed):
 
 ```sh
-export LEPTOS_OUTPUT_NAME="leptos_start"
-export LEPTOS_SITE_ROOT="site"
+export LEPTOS_OUTPUT_NAME="main"
+export LEPTOS_SITE_ROOT="target/site"
 export LEPTOS_SITE_PKG_DIR="pkg"
 export LEPTOS_SITE_ADDR="127.0.0.1:3000"
 export LEPTOS_RELOAD_PORT="3001"
