@@ -33,28 +33,28 @@ pub fn HomePage() -> impl IntoView {
     });
 
     view! {
-    <div class="space-y-6 p-6">
-        {move || {
-            let count = store.count.get();
-            if count <= 2 || count> 6 {
-                Some(view! {
-                <h1 class="text-2xl font-bold text-gray-800">"Welcome to Leptos!"</h1>
-                })
-            } else {
-                None
+        <div class="space-y-6 p-6">
+            {move || {
+                let count = store.count.get();
+                if count <= 2 || count> 6 {
+                    Some(view! {
+                    <h1 class="text-2xl font-bold text-gray-800">"Welcome to Leptos!"</h1>
+                    })
+                } else {
+                    None
+                    }
                 }
             }
-        }
-        <div class="flex items-center space-x-4">
-            <span class="text-lg">"Count:"</span>
-            <span class="text-xl font-semibold text-blue-600">{move || store.count.get()}</span>
+            <div class="flex items-center space-x-4">
+                <span class="text-lg">"Count:"</span>
+                <span class="text-xl font-semibold text-blue-600">{move || store.count.get()}</span>
+            </div>
+            <canvas node_ref=canvas_ref class="border border-gray-300 rounded-md" />
+            <button on:click=on_press
+                class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition">
+                "Alert"
+            </button>
+            <Demo text="Click (emit -> increment)" .to_string() on_demo_click=handle_demo_click />
         </div>
-        <canvas node_ref=canvas_ref class="border border-gray-300 rounded-md" />
-        <button on:click=on_press
-            class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition">
-            "Alert"
-        </button>
-        <Demo text="Click (emit -> increment)" .to_string() on_demo_click=handle_demo_click />
-    </div>
     }
 }
