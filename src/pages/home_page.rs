@@ -1,4 +1,5 @@
 use crate::components::demo::Demo;
+use crate::components::pokemon::PokemonView;
 use crate::store::counter::use_counter_store;
 use leptos::html::Canvas;
 use leptos::prelude::*;
@@ -32,6 +33,7 @@ pub fn HomePage() -> impl IntoView {
         store_for_demo.increment();
     });
 
+    let input_value = RwSignal::new("".to_string());
     view! {
         <div class="space-y-6 p-6">
             {move || {
@@ -55,6 +57,21 @@ pub fn HomePage() -> impl IntoView {
                 "Alert"
             </button>
             <Demo text="Click (emit -> increment)" .to_string() on_demo_click=handle_demo_click />
+            <PokemonView />
+        </div>
+        <div class="space-y-4 p-6">
+            <h2 class="text-xl font-bold">"Two-Way Binding Example"</h2>
+
+            <input
+                class="border border-gray-300 rounded p-2 w-full"
+                type="text"
+                value=move || input_value.get()
+                on:input=move |ev| {
+                    input_value.set(event_target_value(&ev));
+                }
+            />
+
+            <p class="text-gray-700">"You typed: " {move || input_value.get()}</p>
         </div>
     }
 }
