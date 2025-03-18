@@ -35,13 +35,6 @@ Of course, you should explore around the project structure, but the best place t
 
 We are using **cargo-leptos** for building and serving our project.
 
-```sh
-tailwindcss -i ./style/main.css -o ./style/output.css --watch
-```
-Download `TailwindCss CLI` standalone [TailwindCss CLI - Github Releases](https://github.com/tailwindlabs/tailwindcss/releases)
-
-This command watches and generates `output.css` from `main.css`.
-
 Start the Leptos server with:
 
 ```sh
@@ -52,12 +45,9 @@ By default, you can access your local project at [http://localhost:3000](http://
 
 ## Installing Additional Tools
 
-By default, `cargo-leptos` uses `nightly` Rust, `cargo-generate`, and `sass`. If you run into any trouble, you may need to install one or more of these tools.
-
 1. `rustup toolchain install nightly --allow-downgrade` - make sure you have Rust nightly
 2. `rustup target add wasm32-unknown-unknown` - add the ability to compile Rust to WebAssembly
 3. `cargo install cargo-generate` - install `cargo-generate` binary (should be installed automatically in future)
-4. `npm install -g sass` - install `dart-sass` (should be optional in future)
 
 ## Executing a Server on a Remote Machine Without the Toolchain
 
