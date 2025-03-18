@@ -1,4 +1,5 @@
 use crate::components::demo::Demo;
+use crate::components::external_package::ExternalPackages;
 use crate::components::pokemon::PokemonView;
 use crate::store::counter::use_counter_store;
 use leptos::html::Canvas;
@@ -58,6 +59,7 @@ pub fn HomePage() -> impl IntoView {
             </button>
             <Demo text="Click (emit -> increment)" .to_string() on_demo_click=handle_demo_click />
             <PokemonView />
+            <ExternalPackages />
         </div>
         <div class="space-y-4 p-6">
             <h2 class="text-xl font-bold">"Two-Way Binding Example"</h2>
